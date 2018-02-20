@@ -297,7 +297,7 @@
 
 	/**
 	 * API #1 Load the nearby items API end point: [GET]
-	 * /Dashi/search?user_id=1111&lat=37.38&lon=-122.08
+	 * /Seek/search?user_id=1111&lat=37.38&lon=-122.08
 	 */
 	function loadNearbyItems() {
 		console.log('loadNearbyItems');
@@ -330,7 +330,7 @@
 
 	/**
 	 * API #2 Load favorite (or visited) items API end point: [GET]
-	 * /Dashi/history?user_id=1111
+	 * /Seek/history?user_id=1111
 	 */
 	function loadFavoriteItems() {
 		activeBtn('fav-btn');
@@ -358,7 +358,7 @@
 
 	/**
 	 * API #3 Load recommended items API end point: [GET]
-	 * /Dashi/recommendation?user_id=1111
+	 * /Seek/recommendation?user_id=1111
 	 */
 	function loadRecommendedItems() {
 		activeBtn('recommend-btn');
@@ -373,23 +373,20 @@
 		showLoadingMessage('Loading recommended items...');
 
 		// make AJAX call
-		ajax(
-				'GET',
-				url + '?' + params,
-				req,
+		ajax('GET', url + '?' + params, req,
 				// successful callback
 				function(res) {
-					var items = JSON.parse(res);
-					if (!items || items.length === 0) {
-						showWarningMessage('No recommended item. Make sure you have favorites.');
-					} else {
-						listItems(items);
-					}
-				},
-				// failed callback
-				function() {
-					showErrorMessage('Cannot load recommended items.');
-				});
+			var items = JSON.parse(res);
+			if (!items || items.length === 0) {
+				showWarningMessage('No recommended item. Make sure you have favorites.');
+			} else {
+				listItems(items);
+			}
+		},
+		// failed callback
+		function() {
+			showErrorMessage('Cannot load recommended items.');
+		});
 	}
 
 	/**
@@ -398,7 +395,7 @@
 	 * @param item_id -
 	 *            The item business id
 	 * 
-	 * API end point: [POST]/[DELETE] /Dashi/history request json data: {
+	 * API end point: [POST]/[DELETE] /Seek/history request json data: {
 	 * user_id: 1111, visited: [a_list_of_business_ids] }
 	 */
 	function changeFavoriteItem(item_id) {
@@ -499,7 +496,6 @@
 		category.innerHTML = 'Category: ' + item.categories.join(', ');
 		section.appendChild(category);
 
-		// TODO(vincent). here we might have a problem showing 3.5 as 3.
 		// stars
 		var stars = $('div', {
 			className: 'stars'
