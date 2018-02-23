@@ -474,7 +474,7 @@
 		} else {
 			li.appendChild($(
 					'img', {
-						src: 'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png'
+						src: 'https://www.sxsunlimited.com/wp-content/uploads/2017/02/st4Sp6Aw.jpg'
 					}))
 		}
 		// section
